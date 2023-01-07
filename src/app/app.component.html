@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Format Text Online!</h1>
+
+    <hr class="my-4" />
+  </div>
+
+  <form [formGroup]="myForm">
+    <div>
+      <textarea cols="74" rows="16" formControlName="formatBox"></textarea>
+    </div>
+    <button (click)="ucAll()" type="button" class="btn btn-outline-primary">
+      UPPERCASE ALL
+    </button>
+    <button (click)="lcAll()" type="button" class="btn btn-outline-primary">
+      lowercase all
+    </button>
+    <button (click)="cwAll()" type="button" class="btn btn-outline-primary">
+      Capitalize Words
+    </button>
+    <button (click)="csAll()" type="button" class="btn btn-outline-primary">
+      Capitalize Sentences
+    </button>
+
+    <button (click)="clear()" type="button" class="btn btn-outline-danger">
+      Clear
+    </button>
+  </form>
+</div>
