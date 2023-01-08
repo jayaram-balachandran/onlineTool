@@ -1,29 +1,107 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4">Format Text Online!</h1>
+<div [ngClass]="{ 'dark-mode': darkMode }">
+  <div class="container">
+    <nav *ngIf="darkMode" class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        <img
+          src="../assets/Logo.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt=""
+        />
+        Online Text Formatting
+      </a>
+      <a href="#" (click)="toggleDark()">
+        <img src="../assets/darkMode.png" width="30" height="30" alt="" />
+      </a>
+    </nav>
+    <nav *ngIf="!darkMode" class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img
+          src="../assets/Logo.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt=""
+        />
+        Online Text Formatting
+      </a>
+      <a href="#" (click)="toggleDark()">
+        <img src="../assets/darkMode.png" width="30" height="30" alt="" />
+      </a>
+    </nav>
 
-    <hr class="my-4" />
+    <br />
+
+    <form [formGroup]="myForm">
+      <div>
+        <textarea
+          cols="74"
+          rows="16"
+          formControlName="formatBox"
+          [ngClass]="{ 'dark-mode': darkMode }"
+        ></textarea>
+      </div>
+      <button (click)="ucAll()" type="button" class="btn btn-outline-primary">
+        UPPERCASE ALL
+      </button>
+      <button (click)="lcAll()" type="button" class="btn btn-outline-primary">
+        lowercase all
+      </button>
+      <button (click)="cwAll()" type="button" class="btn btn-outline-primary">
+        Capitalize Words
+      </button>
+      <button (click)="csAll()" type="button" class="btn btn-outline-primary">
+        Capitalize sentences
+      </button>
+
+      <button (click)="clear()" type="button" class="btn btn-outline-danger">
+        Clear
+      </button>
+      <br />
+      <hr />
+      <h5>Replace Text:</h5>
+      <input
+        type="checkbox"
+        formControlName="caseSensitive"
+        [ngClass]="{ 'dark-mode': darkMode }"
+      />
+      Case Sensitive<br />
+      <input
+        id="input"
+        type="text"
+        formControlName="find"
+        [ngClass]="{ 'dark-mode': darkMode }"
+      />
+      <p>with</p>
+      <input
+        id="input"
+        type="text"
+        formControlName="replace"
+        [ngClass]="{ 'dark-mode': darkMode }"
+      />
+      <br />
+      <br />
+      <button (click)="replace()" type="button" class="btn btn-outline-primary">
+        Replace
+      </button>
+      <hr />
+    </form>
+    <h4>Welcome to Online Text Formatting Tool</h4>
+    <br />
+    <p>
+      This website aims to help you with tasks where text formatting is needed.
+      It's not intended to replace a word processor, but the formatting tools
+      available here can help speed up some jobs which might otherwise be long
+      and repetitive.
+    </p>
+    <br />
+    <p>
+      Online Text Formatting can also quickly tell you how many words and
+      characters are in your text.
+    </p>
+    <footer class="py-3 my-4">
+      <p class="text-center text-muted">© 2022 Company, Inc</p>
+    </footer>
   </div>
-
-  <form [formGroup]="myForm">
-    <div>
-      <textarea cols="74" rows="16" formControlName="formatBox"></textarea>
-    </div>
-    <button (click)="ucAll()" type="button" class="btn btn-outline-primary">
-      UPPERCASE ALL
-    </button>
-    <button (click)="lcAll()" type="button" class="btn btn-outline-primary">
-      lowercase all
-    </button>
-    <button (click)="cwAll()" type="button" class="btn btn-outline-primary">
-      Capitalize Words
-    </button>
-    <button (click)="csAll()" type="button" class="btn btn-outline-primary">
-      Capitalize Sentences
-    </button>
-
-    <button (click)="clear()" type="button" class="btn btn-outline-danger">
-      Clear
-    </button>
-  </form>
 </div>

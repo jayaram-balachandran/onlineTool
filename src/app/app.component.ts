@@ -8,13 +8,34 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   myForm!: FormGroup;
+  darkMode: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.myForm = this.fb.group({
       formatBox: 'Paste your text here for formatting.',
+      caseSensitive: '',
+      find: '',
+      replace: '',
     });
+  }
+
+  toggleDark() {
+    this.darkMode = !this.darkMode;
+  }
+
+  replace() {
+    if (this.caseVal) {
+      const value = this.formatBoxVal;
+      let newValue = value.replaceAll(this.findVal, this.replaceVal);
+      this.formatBox?.patchValue(newValue);
+    } else if (!this.caseVal) {
+      const value = this.formatBoxVal;
+      var regEx = new RegExp(this.findVal, 'ig');
+      let newValue = value.replaceAll(regEx, this.replaceVal);
+      this.formatBox?.patchValue(newValue);
+    }
   }
 
   ucAll() {
@@ -44,6 +65,15 @@ export class AppComponent implements OnInit {
   }
   get formatBoxVal() {
     return this.myForm.get('formatBox')?.value;
+  }
+  get findVal() {
+    return this.myForm.get('find')?.value;
+  }
+  get replaceVal() {
+    return this.myForm.get('replace')?.value;
+  }
+  get caseVal() {
+    return this.myForm.get('caseSensitive')?.value;
   }
 
   clear() {
